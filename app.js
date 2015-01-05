@@ -7,7 +7,6 @@ app.use(require('morgan')('dev'));
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
 
 require('./factories')(app);
 require('./routes')(app);
@@ -19,10 +18,12 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+/* jshint unused:false */
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
+      env: 'development',
       message: err.message,
       error: err
     });
@@ -31,7 +32,7 @@ if (app.get('env') === 'development') {
 
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.json({
     message: err.message,
     error: {}
   });

@@ -25,4 +25,4 @@ build/Release
 node_modules
 
 config/*
-!config/_sample.yaml
+!config/_sample.json
