@@ -3,7 +3,28 @@ var mongoose = require('mongoose');
 var config = require('config');
 var lingo = require('lingo');
 
-mongoose.connect('mongodb://' + config.mongodb.host + '/' + config.mongodb.database);
+var mongodbConnString = 'mongodb://' + config.mongodb.host + '/' + config.mongodb.database;
+
+if (config.mongodb.replsets && config.mongodb.replsets.length) {
+  mongodbConnString = 'mongodb://' + config.mongodb.host;
+  config.mongodb.replsets.forEach(function(replset) {
+    mongodbConnString += (',' + 'mongodb://' + replset.host);
+  });
+
+  mongodbConnString += '/' + config.mongodb.database;
+}
+
+if (config.mongodb.username && config.mongodb.password) {
+  mongoose.connect(mongodbConnString, {
+    user: config.mongodb.username,
+    pass:config.mongodb.password,
+    db: {
+      readPreference: 'secondaryPreferred'
+    }
+  });
+} else {
+  mongoose.connect(mongodbConnString);
+}
 
 var self = module.exports = {};
 

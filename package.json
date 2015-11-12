@@ -28,5 +28,8 @@
     "node": true,
     "strict": false,
     "predef": []
+  },
+  "jscsConfig": {
+    "fileExtensions": [ ".less", ".html" ]
   }
 }
