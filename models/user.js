@@ -5,13 +5,14 @@ var config = require('config');
 var schema = module.exports = new mongoose.Schema({
   username: { type: String, unique: true },
   password: String,
-  date: { type: Date, default: Date.now },
-  shop:     { type: mongoose.Schema.Types.ObjectId, ref: 'Shop' }
+  updatedTime: { type: Date },
+  createdTime: { type: Date, default: Date.now }
 });
 
 schema.pre('save', function(next) {
-  var self = this;
+  this.updatedTime = new Date();
 
+  var self = this;
   if (!self.isModified('password')) return next();
   bcrypt.hash(self.password, config.bcrypt.rounds, function(err, hash) {
     if (err) return next(err);
