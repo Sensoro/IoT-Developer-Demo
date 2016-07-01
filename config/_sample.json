@@ -3,12 +3,12 @@
     "host": "localhost",
     "database": "test",
     "username": "name",
-    "password": "password",
-    "replsets": [{
-      "host": "localhost:27018"
-    }, {
-      "host": "localhost:27019"
-    }]
-  }
+    "password": "password"
+  },
 
+  "sensoro": {
+    "appId": "",
+    "appKey": "",
+    "appSecret" : ""
+  }
 }

@@ -6,7 +6,6 @@
     "test": "NODE_ENV=test mocha"
   },
   "dependencies": {
-    "bcrypt": "^0.8.7",
     "body-parser": "^1.10.1",
     "config": "^1.21.0",
     "express": "^4.14.0",
@@ -33,7 +32,10 @@
     "unused": true,
     "node": true,
     "strict": false,
-    "predef": []
+    "predef": [
+      "Device",
+      "Log"
+    ]
   },
   "pre-commit": {
     "run": [

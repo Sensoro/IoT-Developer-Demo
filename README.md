@@ -30,5 +30,7 @@
 
 	检查配置文件 AppId, AppSecret, AppKey 是否填写正确，配置文件需与 NODE_ENV 环境变量对应。
 
+    factories/app.js 检查 req.headers['x-forwarded-proto'] 是否正确，不同的反向代理配置会对此字段哟影响， 如果是 Nginx 反向代理，请配置 `proxy_set_header X-Forwarded-Proto $scheme;`
+
 
  
