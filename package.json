@@ -3,24 +3,27 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "mocha"
+    "test": "NODE_ENV=test mocha"
   },
   "dependencies": {
-    "bcrypt": "^0.8.0",
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.10.1",
-    "config": "^1.9.0",
-    "express": "^4.10.7",
+    "config": "^1.21.0",
+    "express": "^4.14.0",
     "express-di": "^4.1.1",
     "lingo": "0.0.5",
-    "mongoose": "^3.8.21",
-    "morgan": "^1.5.1",
-    "require-directory": "^2.0.0"
+    "mongoose": "^4.5.3",
+    "morgan": "^1.7.0",
+    "require-directory": "^2.1.1"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "mocha": "^1.18.2",
-    "supertest": "^0.11.0",
-    "should": "^3.3.1"
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
+    "pre-commit": "^1.1.2",
+    "rewire": "^2.5.1",
+    "should": "^7.0.2",
+    "sinon": "^1.17.2",
+    "supertest": "^1.0.1"
   },
   "jshintConfig": {
     "undef": true,
@@ -28,6 +31,11 @@
     "node": true,
     "strict": false,
     "predef": []
+  },
+  "pre-commit": {
+    "run": [
+      "test"
+    ]
   },
   "jscsConfig": {
     "fileExtensions": [ ".less", ".html" ]
