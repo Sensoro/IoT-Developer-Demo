@@ -25,6 +25,9 @@
     "sinon": "^1.17.2",
     "supertest": "^1.0.1"
   },
+  "engines": {
+    "node": ">= 4.4.4"
+  },
   "jshintConfig": {
     "undef": true,
     "unused": true,
