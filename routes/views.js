@@ -37,11 +37,11 @@ app.get('/', function (req, res) {
   var query = Device.find({});
 
   if (req.query.count && req.query.page) {
-    query.skip(req.query.count * (req.query.page - 1 ));
-    query.limit(req.query.count);
+    query.skip(Number(req.query.count) * (Number(req.query.page) - 1 ));
+    query.limit(Number(req.query.count));
   } else {
     query.skip(0);
-    query.limit(req.query.count || 20);
+    query.limit(Number(req.query.count) || 20);
   }
 
   query.exec(function(err, data) {
