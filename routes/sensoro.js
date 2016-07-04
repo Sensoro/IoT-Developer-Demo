@@ -26,6 +26,10 @@ app.post('/webhooks', function(app, req, res) {
     });
   }
 
+  res.status(200).json({
+    message: 'success'
+  });
+
   var data = {};
   if (req.body.data) {
     data = purifyWebhooksData(req.body.data);
@@ -44,9 +48,6 @@ app.post('/webhooks', function(app, req, res) {
       console.error(err);
     }
 
-     res.status(200).json({
-      message: 'success'
-    });
     Log.create({
       sn: req.body.sn,
       events: 'sensor-update',
