@@ -36,12 +36,12 @@ html
       .pagination
         ul
           li
-            a(href='/views?page=' + (Number(page)-1)) Pre
+            a(href='/views?page=' + (Number(page)-1) + '&count=' + count) Pre
           - for (var i = 1; i<=parseInt(total_count/count)+1; i++)
             li
-              a(href='/views?page=' + i)=i
+              a(href='/views?page=' + i + '&count=' + count)=i
           li
-            a(href='/views?page=' + (Number(page) + 1)) Next
+            a(href='/views?page=' + (Number(page) + 1) + '&count=' + count) Next
     #footer
       .container
     script(src='js/jquery.js')

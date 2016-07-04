@@ -26,8 +26,8 @@ var moment = require('moment');
 
 app.get('/', function (req, res) {
   var pageRenderParams = {
-    page: req.query.page || 1,
-    count: req.query.count || 20,
+    page: Number(req.query.page) || 1,
+    count: Number(req.query.count) || 20,
     total_count: 0,
     data: [],
     err_code: -1
