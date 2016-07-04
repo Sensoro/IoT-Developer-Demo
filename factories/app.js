@@ -34,7 +34,7 @@ function verifySignatrue(req, callback) {
     return callback(error);
   }
 
-  callback(error);
+  callback();
 }
 
 module.exports = function() {
