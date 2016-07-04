@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title IoT Demo
+    meta(charset='urt-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='css/bootstrap.min.css', rel='stylesheet', media='screen')
+  body
+    #list
+      .container
+        .page-header
+          h1 Dashboard
+      ul.breadcrumb
+        li
+          a(href='/views') 传感器管理
+          span.divider /
+      table.table.table-striped
+        thead
+          tr
+            th 设备编号
+            th 光线
+            th 温度
+            th 湿度
+            th 经纬度
+            th 操作
+        tbody
+          each device in data
+            tr
+              td= device.sn
+              td= device.sensorData && device.sensorData.light
+              td= device.sensorData && device.sensorData.temperature
+              td= device.sensorData && device.sensorData.humidity
+              td= device.sensorData && device.sensorData.lonlat
+              td
+                a.icon-wrench(href='/views/details?sn=' + device.sn  title='详情')
+      .pagination
+        ul
+          li
+            a(href='/views?page=' + (Number(page)-1)) Pre
+          - for (var i = 1; i<=parseInt(total_count/count)+1; i++)
+            li
+              a(href='/?page=' + i)=i
+          li
+            a(href='/views?page=' + (Number(page) + 1)) Next
+    #footer
+      .container
+    script(src='http://code.jquery.com/jquery.js')
+    script(src='js/bootstrap.min.js')
