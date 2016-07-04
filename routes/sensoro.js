@@ -43,7 +43,7 @@ app.post('/webhooks', function(app, req, res) {
     }
   }, {
     upsert: true
-  }).then(function(err) {
+  }).exec(function(err) {
     if (err) {
       console.error(err);
     }
