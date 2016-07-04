@@ -3,7 +3,12 @@
     "host": "localhost",
     "database": "test",
     "username": "name",
-    "password": "password"
+    "password": "password",
+     "replsets": [{
+      "host": "localhost:27018"
+    }, {
+      "host": "localhost:27018"
+    }]
   },
 
   "sensoro": {
