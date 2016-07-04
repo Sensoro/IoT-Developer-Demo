@@ -10,7 +10,7 @@ var app = module.exports = express();
 function purifyWebhooksData (data) {
   var results = {};
   Device.PROPERTIES.forEach(function(property) {
-    results[property] = data[property];
+    if (data[property]) results[property] = data[property];
   });
 
   return results;
