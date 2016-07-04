@@ -1,5 +1,6 @@
 var models = require('require-directory')(module);
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var config = require('config');
 var lingo = require('lingo');
 
