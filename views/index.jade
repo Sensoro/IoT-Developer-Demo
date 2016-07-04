@@ -27,9 +27,9 @@ html
           each device in data
             tr
               td= device.sn
-              td= device.sensorData && device.sensorData.light
-              td= device.sensorData && device.sensorData.temperature
-              td= device.sensorData && device.sensorData.humidity
+              td= device.sensorData && device.sensorData.light +' Lx'
+              td= device.sensorData && device.sensorData.temperature + ' °C'
+              td= device.sensorData && device.sensorData.humidity + ' %RH'
               td= device.sensorData && device.sensorData.lonlat
               td
                 a.icon-wrench(href='/views/details?sn=' + device.sn  title='详情')
