@@ -39,10 +39,10 @@ html
             a(href='/views?page=' + (Number(page)-1)) Pre
           - for (var i = 1; i<=parseInt(total_count/count)+1; i++)
             li
-              a(href='/?page=' + i)=i
+              a(href='views/?page=' + i)=i
           li
             a(href='/views?page=' + (Number(page) + 1)) Next
     #footer
       .container
-    script(src='http://code.jquery.com/jquery.js')
+    script(src='js/jquery.js')
     script(src='js/bootstrap.min.js')
