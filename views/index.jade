@@ -59,10 +59,7 @@ html
                         td= device.sensorData.customer
                       else
                         td.small= '无'
-                      if device.updatedTime
-                        td= device.updatedTime
-                      else
-                        td.text-danger='无'
+                      td= device.updatedTime
             .col-lg-8
               ul.pagination
                 li

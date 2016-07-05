@@ -58,6 +58,12 @@ app.get('/', function (req, res) {
       return res.render('index', pageRenderParams);
     }
 
+    data = data.map(function(item) {
+      item = item.toJSON();
+      item.updatedTime = item.updatedTime && moment(item.updatedTime).format('YYYY-MM-DD HH:mm:ss');
+      return item;
+    });
+
     queryCount.exec(function(err, count) {
       if (err) {
         return res.render('index', pageRenderParams);
