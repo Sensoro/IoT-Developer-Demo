@@ -36,6 +36,15 @@ app.get('/', function (req, res) {
   var queryCount = Device.count({});
   var query = Device.find({});
 
+  if (req.query.sn) {
+    query.and({
+      sn: req.query.sn
+    });
+    queryCount.and({
+      sn: req.query.sn
+    });
+  }
+
   if (req.query.count && req.query.page) {
     query.skip(Number(req.query.count) * (Number(req.query.page) - 1 ));
     query.limit(Number(req.query.count));

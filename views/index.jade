@@ -21,6 +21,11 @@ html
           .row
             .col-lg-8
               .bs-component
+                .container-fluid
+                  .collapse.navbar-collapse
+                    .navbar-form.navbar-left
+                      .form-group
+                        input#searchInput.form-control(type='text' placeholder='根据设备编号搜索.')
                 table.table.table-striped.table-hover
                   thead
                     tr
@@ -71,3 +76,15 @@ html
               p Copyright © 2016 Sensoro Inc. All rights reserved.
     script(src='js/jquery.js')
     script(src='js/bootstrap.min.js')
+    script.
+      $('#searchInput').on('keydown', search)
+      function search(event) {
+        if (event.keyCode === 13) {
+          var sn = document.getElementById('searchInput').value;
+          if (sn) {
+            window.location.href='/views?sn=' + sn;
+          } else {
+            window.location.href='/views';
+          }
+        }
+      }
