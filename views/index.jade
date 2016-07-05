@@ -14,59 +14,56 @@ html
               h1 α 云平台开发者对接示例
         .row
           .col-lg-4
-            .bs-component
-              ul.breadcrumb
-                li.active 传感器管理
+            ul.breadcrumb
+              li.active 传感器管理
         .bs-docs-section
           .row
             .col-lg-12
-              .bs-component
-                .container-fluid
-                  .collapse.navbar-collapse
-                    .navbar-form.navbar-left
-                      .form-group
-                        input#searchInput.form-control(type='text' placeholder='根据设备编号搜索.')
-                table.table.table-striped.table-hover
-                  thead
+              .container-fluid
+                .collapse.navbar-collapse
+                  .navbar-form.navbar-left
+                    .form-group
+                      input#searchInput.form-control(type='text' placeholder='根据设备编号搜索.')
+              table.table.table-striped.table-hover
+                thead
+                  tr
+                    th 设备编号
+                    th 光线
+                    th 温度
+                    th 湿度
+                    th 经纬度
+                tbody
+                  each device in data
                     tr
-                      th 设备编号
-                      th 光线
-                      th 温度
-                      th 湿度
-                      th 经纬度
-                  tbody
-                    each device in data
-                      tr
-                        td
-                          a(href='/views/details?sn=' + device.sn  title='详情')
-                            span= device.sn
-                        if device.sensorData && device.sensorData.light
-                          td= device.sensorData.light +' Lx'
-                        else
-                          td.text-danger='未知'
-                        if device.sensorData && device.sensorData.temperature
-                          td= device.sensorData.temperature + ' °C'
-                        else
-                          td.text-danger='未知'
-                        if device.sensorData && device.sensorData.humidity
-                          td= device.sensorData.humidity + ' %RH'
-                        else
-                          td.text-danger='未知'
-                        td= device.sensorData && device.sensorData.lonlat
-            .col-lg-8
-              .bs-component
-                ul.pagination
-                  li
-                    a(href='/views?page=' + ((Number(page)-1) <= 0 ? 1: (Number(page)-1)) + '&count=' + count) Pre
-                    - for (var i = 1; i<=parseInt(total_count/count)+1; i++)
-                      if page === i
-                        li.active
-                          a(href='/views?page=' + i + '&count=' + count)=i
+                      td
+                        a(href='/views/details?sn=' + device.sn  title='详情')
+                          span= device.sn
+                      if device.sensorData && device.sensorData.light
+                        td= device.sensorData.light +' Lx'
                       else
-                        li
-                          a(href='/views?page=' + i + '&count=' + count)=i
-                  li
-                    a(href='/views?page=' + ((Number(page) + 1) >= parseInt(total_count/count)+1 ? parseInt(total_count/count)+1: (Number(page) + 1)) + '&count=' + count) Next
+                        td.text-danger='未知'
+                      if device.sensorData && device.sensorData.temperature
+                        td= device.sensorData.temperature + ' °C'
+                      else
+                        td.text-danger='未知'
+                      if device.sensorData && device.sensorData.humidity
+                        td= device.sensorData.humidity + ' %RH'
+                      else
+                        td.text-danger='未知'
+                      td= device.sensorData && device.sensorData.lonlat
+            .col-lg-8
+              ul.pagination
+                li
+                  a(href='/views?page=' + ((Number(page)-1) <= 0 ? 1: (Number(page)-1)) + '&count=' + count) «
+                  - for (var i = 1; i<=parseInt(total_count/count)+1; i++)
+                    if page === i
+                      li.active
+                        a(href='/views?page=' + i + '&count=' + count)=i
+                    else
+                      li
+                        a(href='/views?page=' + i + '&count=' + count)=i
+                li
+                  a(href='/views?page=' + ((Number(page) + 1) >= parseInt(total_count/count)+1 ? parseInt(total_count/count)+1: (Number(page) + 1)) + '&count=' + count) »
     #footer
       .container
         .bs-docs-section
