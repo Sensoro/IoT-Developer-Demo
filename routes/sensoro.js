@@ -39,7 +39,8 @@ app.post('/webhooks', function(io, app, req, res) {
     sn: req.body.sn
   }, {
     $set: {
-      sensorData: data
+      sensorData: data,
+      updatedTime: new Date()
     }
   }, {
     upsert: true

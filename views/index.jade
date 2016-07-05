@@ -35,6 +35,7 @@ html
                     th 湿度
                     th 经纬度
                     th 自定义数据
+                    th 最近更新时间
                 tbody
                   each device in data
                     tr
@@ -58,6 +59,10 @@ html
                         td= device.sensorData.customer
                       else
                         td.small= '无'
+                      if device.updatedTime
+                        td= device.updatedTime
+                      else
+                        td.text-danger='无'
             .col-lg-8
               ul.pagination
                 li
