@@ -41,6 +41,10 @@
       if (log.sn === sn) {
         data.shift();
         data.push(formatEchartsData(log));
+
+        myChart.setOption({series: [{
+          data: data
+        }]});
       }
     });
   }
