@@ -12,7 +12,7 @@
   var data = [];
 
   function setupSocketIO() {
-    socket = io(window.location.origin + '/?sn=' + sn);
+    socket = io();
 
     socket.on('connect', function() {
       console.log('connect success');

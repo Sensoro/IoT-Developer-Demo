@@ -23,8 +23,11 @@ function setupSocket(socket) {
 }
 
 module.exports = function(app) {
+  var redis = require('socket.io-redis');
   io = require('socket.io')(app.get('server'));
+  io.adapter(redis({ host: 'localhost', port: 6379 }));
   io.set('transports', ['polling']);
+
   io.on('connection', function (socket) {
     console.log('on connection.');
     setupSocket(socket);
