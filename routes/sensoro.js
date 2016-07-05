@@ -16,7 +16,7 @@ function purifyWebhooksData (data) {
   return results;
 }
 
-app.post('/webhooks', function(app, req, res) {
+app.post('/webhooks', function(io, app, req, res) {
   console.log('Echo SENSORO POST Data :: ');
   console.log(req.body);
 
@@ -48,10 +48,14 @@ app.post('/webhooks', function(app, req, res) {
       console.error(err);
     }
 
-    Log.create({
+    var newLog = new Log({
       sn: req.body.sn,
       events: 'sensor-update',
       sensor: data
-    }).then();
+    });
+
+    newLog.save(function(err, log) {
+       io.emit('sensor-update', log);
+    });
   });
 });

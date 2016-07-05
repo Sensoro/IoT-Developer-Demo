@@ -16,6 +16,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('server', require('http').Server(app));
+
 require('./factories')(app);
 require('./routes')(app);
 require('./models');
@@ -49,5 +51,5 @@ app.use(function(err, req, res, next) {
 });
 
 if (app.get('env') !== 'test') {
-  app.listen(process.env.PORT || 3000);
+   app.get('server').listen(process.env.PORT || 3000);
 }

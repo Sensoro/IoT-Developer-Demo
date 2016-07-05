@@ -18,7 +18,11 @@ html
           a(href='/views') 传感器管理
           span.divider /
         li.active 传感器详情
+      #echarts(style='width:75%;height:400px;')
     #footer
       .container
     script(src='http://code.jquery.com/jquery.js')
     script(src='/js/bootstrap.min.js')
+    script(src='/js/echarts.min.js')
+    script(src='https://cdn.socket.io/socket.io-1.4.5.js')
+    script(src='/js/realtime.js')
