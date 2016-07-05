@@ -6,7 +6,6 @@
     "test": "NODE_ENV=test mocha"
   },
   "dependencies": {
-    "bcrypt": "^0.8.7",
     "bluebird": "^3.4.1",
     "body-parser": "^1.10.1",
     "config": "^1.21.0",

@@ -14,7 +14,7 @@
 
 ### Installation
  	
- 	$ git clone https://github.com/Sensoro/IoT-Devloper-Demo-API
+ 	$ git clone https://github.com/Sensoro/IoT-Devloper-Demo
  	$ npm install
  	$ cp config/_sample.json config/developer.json && vim config/developer.json 
  	
