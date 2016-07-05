@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose');
 
-var PROPERTIES = ['lonlat', 'light', 'temperature', 'humidity'];
+var PROPERTIES = ['lonlat', 'light', 'temperature', 'humidity', 'customer'];
 
 var schema = module.exports = new mongoose.Schema({
   sn: { type: String, unique: true },
@@ -12,7 +12,8 @@ var schema = module.exports = new mongoose.Schema({
     light: Number,
     temperature: Number,
     lonlat: { type: [Number], index: '2d', default: [0, 0] },
-    humidity: Number
+    humidity: Number,
+    customer:String //自定义数据
   },
   createTime: { type: Date, default: Date.now },
   updatedTime: Date

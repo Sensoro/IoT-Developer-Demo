@@ -9,7 +9,8 @@ var schema = module.exports = new mongoose.Schema({
     light: Number,
     temperature: Number,
     lonlat: [Number],
-    humidity: Number
+    humidity: Number,
+    customer: String
   },
   updatedTime: { type: Date, default: Date.now }
 });

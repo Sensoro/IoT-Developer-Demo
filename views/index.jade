@@ -21,29 +21,30 @@ html
             .col-lg-12
               .container-fluid
                 .collapse.navbar-collapse
-                  .navbar-form.navbar-left
+                  .navbar-form.navbar-right
                     .form-group
                       input#searchInput.form-control(type='text' placeholder='根据设备编号搜索.')
               table.table.table-striped.table-hover
                 thead
                   tr
                     th 设备编号
-                    th 光线
                     th 温度
+                    th 光线
                     th 湿度
                     th 经纬度
+                    th 自定义数据
                 tbody
                   each device in data
                     tr
                       td
                         a(href='/views/details?sn=' + device.sn  title='详情')
                           span= device.sn
-                      if device.sensorData && device.sensorData.light
-                        td= device.sensorData.light +' Lx'
-                      else
-                        td.text-danger='未知'
                       if device.sensorData && device.sensorData.temperature
                         td= device.sensorData.temperature + ' °C'
+                      else
+                        td.text-danger='未知'
+                      if device.sensorData && device.sensorData.light
+                        td= device.sensorData.light +' Lx'
                       else
                         td.text-danger='未知'
                       if device.sensorData && device.sensorData.humidity
@@ -51,6 +52,10 @@ html
                       else
                         td.text-danger='未知'
                       td= device.sensorData && device.sensorData.lonlat
+                      if device.sensorData && device.sensorData.customer
+                        td= device.sensorData.customer
+                      else
+                        td.small= '无'
             .col-lg-8
               ul.pagination
                 li
