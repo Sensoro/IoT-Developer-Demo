@@ -55,8 +55,12 @@ html
                   li
                     a(href='/views?page=' + ((Number(page)-1) <= 0 ? 1: (Number(page)-1)) + '&count=' + count) Pre
                   - for (var i = 1; i<=parseInt(total_count/count)+1; i++)
-                    li
-                      a(href='/views?page=' + i + '&count=' + count)=i
+                    if page === i
+                      li.active
+                        a(href='/views?page=' + i + '&count=' + count)=i
+                    else
+                      li
+                        a(href='/views?page=' + i + '&count=' + count)=i
                   li
                     a(href='/views?page=' + ((Number(page) + 1) >= parseInt(total_count/count)+1 ? parseInt(total_count/count)+1: (Number(page) + 1)) + '&count=' + count) Next
     #footer
