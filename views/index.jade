@@ -4,9 +4,9 @@ html
     title α 云平台开发者对接示例
     meta(charset='urt-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(href='css/bootstrap.min.css', rel='stylesheet', media='screen')
-    link(href='css/bootstrap-table.min.css', rel='stylesheet')
-    link(href='css/font-awesome.min.css', rel='stylesheet', media='screen')
+    link(href='/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='/css/bootstrap-table.min.css', rel='stylesheet')
+    link(href='/css/font-awesome.min.css', rel='stylesheet', media='screen')
   body
     #list
       .container
@@ -15,7 +15,7 @@ html
             .col-lg-12
               h1 SENSORO
               p
-                img(src='img/signal.gif' width=110 height=70)
+                img(src='/img/signal.gif' width=110 height=70)
         .row
           .col-lg-4
             ul.breadcrumb
@@ -23,81 +23,25 @@ html
         .bs-docs-section
           .row
             .col-lg-12
-              .container-fluid
-                .collapse.navbar-collapse
-                  .navbar-form.navbar-right
-                    .form-group
-                      input#searchInput.form-control(type='text' placeholder='根据设备编号搜索.')
               table.table.table-striped.table-hover(data-toggle='table' data-classes='table-no-bordered'
-              data-sort-name='updatedTime' data-sort-order='desc' data-side-pagination='server'
-              data-url='/views/data.json')
+              data-sort-name='updatedTime' data-sort-order='desc' data-url='/views/sensors' pagination='true'
+              data-pagination='true' data-side-pagination='server' data-page-size=20 data-search='true')
                 thead
                   tr
                     th(data-field='sn' data-sortable='true') 设备编号
-                    th(data-field='temperature' data-sortable='true') 温度
-                    th(data-field='light' data-sortable='true') 光线
-                    th(data-field='humidity' data-sortable='true') 湿度
-                    th(data-field='battery' data-sortable='true') 电量
-                    th(data-field='customer' data-sortable='true') 自定义数据
+                    th(data-field='sensorData.temperature' data-sortable='true') 温度 °C
+                    th(data-field='sensorData.light' data-sortable='true') 光线 Lx
+                    th(data-field='sensorData.humidity' data-sortable='true') 湿度 %RH
+                    th(data-field='sensorData.battery' data-sortable='true') 电量 %
+                    th(data-field='sensorData.customer' data-sortable='true') 自定义数据
                     th(data-field='updatedTime' data-sortable='true'  data-sort-order='desc') 最近更新时间
-                tbody
-                  each device in data
-                    tr
-                      td
-                        a(href='/views/details?sn=' + device.sn  title='详情')
-                          span= device.sn
-                      if device.sensorData && device.sensorData.temperature
-                        td= device.sensorData.temperature + ' °C'
-                      else
-                        td.text-danger='-'
-                      if device.sensorData && device.sensorData.light
-                        td= device.sensorData.light +' Lx'
-                      else
-                        td.text-danger='-'
-                      if device.sensorData && device.sensorData.humidity
-                        td= device.sensorData.humidity + ' %RH'
-                      else
-                        td.text-danger='-'
-                      if device.sensorData && device.sensorData.battery
-                        td= device.sensorData.battery
-                      else
-                        td.text-danger='-'
-                      if device.sensorData && device.sensorData.customer
-                        td= device.sensorData.customer
-                      else
-                        td.small= '-'
-                      td= device.updatedTime
-            .col-lg-8
-              ul.pagination
-                li
-                  a(href='/views?page=' + ((Number(page)-1) <= 0 ? 1: (Number(page)-1)) + '&count=' + count) «
-                  - for (var i = 1; i<=parseInt(total_count/count)+1; i++)
-                    if page === i
-                      li.active
-                        a(href='/views?page=' + i + '&count=' + count)=i
-                    else
-                      li
-                        a(href='/views?page=' + i + '&count=' + count)=i
-                li
-                  a(href='/views?page=' + ((Number(page) + 1) >= parseInt(total_count/count)+1 ? parseInt(total_count/count)+1: (Number(page) + 1)) + '&count=' + count) »
     #footer
       .container
         .bs-docs-section
           .row
             .col-lg-12
               p.text-center Copyright © 2016 Sensoro Inc. All rights reserved.
-    script(src='js/jquery.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/bootstrap-table.min.js')
-    script.
-      $('#searchInput').on('keydown', search)
-      function search(event) {
-        if (event.keyCode === 13) {
-          var sn = document.getElementById('searchInput').value;
-          if (sn) {
-            window.location.href='/views?sn=' + sn;
-          } else {
-            window.location.href='/views';
-          }
-        }
-      }
+    script(src='/js/jquery.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/bootstrap-table.min.js')
+    script(src='/js/bootstrap-table-zh-CN.min.js')

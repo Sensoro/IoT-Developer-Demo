@@ -13,6 +13,7 @@ var schema = module.exports = new mongoose.Schema({
     temperature: Number,
     lonlat: { type: [Number], index: '2d', default: [0, 0] },
     humidity: Number,
+    battery: Number,
     customer:String //自定义数据
   },
   createTime: { type: Date, default: Date.now },
