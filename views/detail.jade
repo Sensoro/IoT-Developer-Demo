@@ -6,6 +6,7 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     // Bootstrap
     link(href='/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='/css/font-awesome.min.css', rel='stylesheet', media='screen')
   body
     // Part 1: Wrap all page content here
     #list
@@ -19,7 +20,7 @@ html
         .row
           .col-lg-12
             ul.breadcrumb
-              li
+              li.fa.fa-home.active(aria-hidden='true')&nbsp;
                 a(href='/views') 传感器管理
               li.active 传感器详情
         .bs-docs-section
@@ -35,5 +36,5 @@ html
     script(src='/js/jquery.js')
     script(src='/js/bootstrap.min.js')
     script(src='/js/echarts.min.js')
-    script(src='https://cdn.socket.io/socket.io-1.4.5.js')
+    script(src='/js/socket.io-1.4.5.js')
     script(src='/js/realtime.js')
