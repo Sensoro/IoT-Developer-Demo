@@ -78,6 +78,11 @@ app.get('/', function (req, res) {
   });
 });
 
+//传感器数据列表数据
+app.get('/sensors', function(req, res) {
+
+});
+
 /**
  * 当天设备的数据详情
  */

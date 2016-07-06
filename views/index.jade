@@ -5,6 +5,7 @@ html
     meta(charset='urt-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='css/bootstrap-table.min.css', rel='stylesheet')
     link(href='css/font-awesome.min.css', rel='stylesheet', media='screen')
   body
     #list
@@ -27,16 +28,18 @@ html
                   .navbar-form.navbar-right
                     .form-group
                       input#searchInput.form-control(type='text' placeholder='根据设备编号搜索.')
-              table.table.table-striped.table-hover
+              table.table.table-striped.table-hover(data-toggle='table' data-classes='table-no-bordered'
+              data-sort-name='updatedTime' data-sort-order='desc' data-side-pagination='server'
+              data-url='/views/data.json')
                 thead
                   tr
-                    th 设备编号
-                    th 温度
-                    th 光线
-                    th 湿度
-                    th 经纬度
-                    th 自定义数据
-                    th 最近更新时间
+                    th(data-field='sn' data-sortable='true') 设备编号
+                    th(data-field='temperature' data-sortable='true') 温度
+                    th(data-field='light' data-sortable='true') 光线
+                    th(data-field='humidity' data-sortable='true') 湿度
+                    th(data-field='battery' data-sortable='true') 电量
+                    th(data-field='customer' data-sortable='true') 自定义数据
+                    th(data-field='updatedTime' data-sortable='true'  data-sort-order='desc') 最近更新时间
                 tbody
                   each device in data
                     tr
@@ -46,20 +49,23 @@ html
                       if device.sensorData && device.sensorData.temperature
                         td= device.sensorData.temperature + ' °C'
                       else
-                        td.text-danger='未知'
+                        td.text-danger='-'
                       if device.sensorData && device.sensorData.light
                         td= device.sensorData.light +' Lx'
                       else
-                        td.text-danger='未知'
+                        td.text-danger='-'
                       if device.sensorData && device.sensorData.humidity
                         td= device.sensorData.humidity + ' %RH'
                       else
-                        td.text-danger='未知'
-                      td= device.sensorData && device.sensorData.lonlat
+                        td.text-danger='-'
+                      if device.sensorData && device.sensorData.battery
+                        td= device.sensorData.battery
+                      else
+                        td.text-danger='-'
                       if device.sensorData && device.sensorData.customer
                         td= device.sensorData.customer
                       else
-                        td.small= '无'
+                        td.small= '-'
                       td= device.updatedTime
             .col-lg-8
               ul.pagination
@@ -79,9 +85,10 @@ html
         .bs-docs-section
           .row
             .col-lg-12
-              p Copyright © 2016 Sensoro Inc. All rights reserved.
+              p.text-center Copyright © 2016 Sensoro Inc. All rights reserved.
     script(src='js/jquery.js')
     script(src='js/bootstrap.min.js')
+    script(src='js/bootstrap-table.min.js')
     script.
       $('#searchInput').on('keydown', search)
       function search(event) {

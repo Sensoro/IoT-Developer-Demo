@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose');
 
-var PROPERTIES = ['lonlat', 'light', 'temperature', 'humidity', 'customer'];
+var PROPERTIES = ['lonlat', 'light', 'temperature', 'humidity', 'customer', 'battery'];
 
 var schema = module.exports = new mongoose.Schema({
   sn: { type: String, unique: true },
