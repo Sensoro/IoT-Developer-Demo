@@ -53,7 +53,7 @@ app.get('/', function (req, res) {
     query.limit(Number(req.query.count) || 20);
   }
 
-  query.exec(function(err, data) {
+  query.sort('-updatedTime').exec(function(err, data) {
     if (err) {
       return res.render('index', pageRenderParams);
     }
