@@ -17,10 +17,16 @@ app.get('/sensors', function(req, res) {
 
   if (req.query.search) {
     query.and({
-      sn: req.query.search
+      sn: {
+        $regex: req.query.search,
+        $options: 'i'
+      }
     });
     queryCount.and({
-      sn: req.query.search
+       sn: {
+        $regex: req.query.search,
+        $options: 'i'
+      }
     });
   }
 
