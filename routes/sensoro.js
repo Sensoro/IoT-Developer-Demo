@@ -42,10 +42,16 @@ app.post('/webhooks', function(io, app, req, res) {
     var crypter = new MsgCrypt(config.appSecret, config.appKey, config.appId);
     var decryptData = crypter.decrypt(req.body.encryptData).message; //加密需要发送的数据部分
     if (!decryptData.id) {
-      return;
+      return console.warn('decrypt faild.');
     }
 
-    data = purifyWebhooksData(JSON.parse(decryptData));
+    try {
+      data = purifyWebhooksData(JSON.parse(decryptData.message));
+    } catch (e) {
+      if (e) {
+        return console.error(e);
+      }
+    }
   }
 
   Device.findOneAndUpdate({
