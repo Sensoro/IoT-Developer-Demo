@@ -33,10 +33,6 @@ app.post('/webhooks', function(io, app, req, res) {
     message: 'success'
   });
 
-  if (!req.body.data && !req.body.encryptData) {
-    return;
-  }
-
   var data = {};
   if (req.body.data) {
     data = purifyWebhooksData(req.body.data);
