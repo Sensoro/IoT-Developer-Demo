@@ -1,4 +1,4 @@
-# IoT Devloper Demo API
+# IoT Devloper Demo
 
 > SENSORO IoT 云平台为软件开发者提供 IoT 传感器数据实时推送, 通过 Webhook(自定义回调URL) 和 MQTT 两种方式将消息推送给开发者，当终端设备数据发生变化时，开发者能够接收到实时通知。
 
@@ -35,3 +35,6 @@
 2. pm2 start 多个实例
     
     socket.io 不支持在相同端口 pm2 start 多个实例。
+# License
+
+MIT
