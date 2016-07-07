@@ -2,6 +2,9 @@ var express = require('express');
 
 var app = module.exports = express();
 
+var MsgCrypt = require('wechat-crypto');
+var config = require('config');
+
 /**
  * 过滤推送数据
  * 参加 http://docs.sensoro.com/cloud/webhook.html 推送数据格式。
@@ -30,9 +33,23 @@ app.post('/webhooks', function(io, app, req, res) {
     message: 'success'
   });
 
+  if (!req.body.data && !req.body.encryptData) {
+    return;
+  }
+
   var data = {};
   if (req.body.data) {
     data = purifyWebhooksData(req.body.data);
+  }
+
+  if (req.body.encryptData) {
+    var crypter = new MsgCrypt(config.appSecret, config.appKey, config.appId);
+    var decryptData = crypter.decrypt(req.body.encryptData).message; //加密需要发送的数据部分
+    if (!decryptData.id) {
+      return;
+    }
+
+    data = purifyWebhooksData(JSON.parse(decryptData));
   }
 
   Device.findOneAndUpdate({
