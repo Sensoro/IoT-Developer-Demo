@@ -39,17 +39,15 @@ app.post('/webhooks', function(io, app, req, res) {
   }
 
   if (req.body.encryptData) {
-    var crypter = new MsgCrypt(config.appSecret, config.appKey, config.appId);
-    var decryptData = crypter.decrypt(req.body.encryptData).message; //加密需要发送的数据部分
-    if (!decryptData.id) {
-      return console.warn('decrypt faild.');
-    }
-
-    try {
-      data = purifyWebhooksData(JSON.parse(decryptData.message));
-    } catch (e) {
-      if (e) {
-        return console.error(e);
+    var crypter = new MsgCrypt(config.sensoro.appSecret, config.sensoro.appKey, config.sensoro.appId);
+    var decryptData = crypter.decrypt(req.body.encryptData); //加密需要发送的数据部分
+    if (decryptData.id) {
+       try {
+        data = purifyWebhooksData(JSON.parse(decryptData.message));
+      } catch (e) {
+        if (e) {
+          console.error(e);
+        }
       }
     }
   }
