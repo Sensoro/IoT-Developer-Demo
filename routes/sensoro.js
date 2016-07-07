@@ -50,6 +50,9 @@ app.post('/webhooks', function(io, app, req, res) {
         }
       }
     }
+
+    console.log('purify decrypt data ::');
+    console.log(data);
   }
 
   Device.findOneAndUpdate({
