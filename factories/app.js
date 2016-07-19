@@ -11,7 +11,7 @@ var SECRET = config.sensoro.appSecret;
  * see:  http://docs.sensoro.com/cloud/auth.html
  */
 function verifySignatrue(req, callback) {
-   var url = req.headers['x-forwarded-proto'] + '://' + req.get('host') + req.originalUrl;
+   var url = (req.headers['x-forwarded-proto'] || req.protocol) + '://' + req.get('host') + req.originalUrl;
   // 生成 ACCESS_NONCE，值为当前的 Unix 时间，单位为毫秒
   var ACCESS_NONCE = req.headers['x-access-nonce'];
 
