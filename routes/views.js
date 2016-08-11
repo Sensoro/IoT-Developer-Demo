@@ -16,17 +16,23 @@ app.get('/sensors', function(req, res) {
   var query = Device.find({});
 
   if (req.query.search) {
-    query.and({
-      sn: {
-        $regex: req.query.search,
-        $options: 'i'
-      }
-    });
-    queryCount.and({
-       sn: {
-        $regex: req.query.search,
-        $options: 'i'
-      }
+    if (!Array.isArray(req.query.search)) {
+      req.query.search = new Array(req.query.search);
+    }
+
+    req.query.search.forEach(function(item) {
+      query.and({
+        indexTags: {
+          $regex: item,
+          $options: 'i'
+        }
+      });
+      queryCount.and({
+         indexTags: {
+          $regex: item,
+          $options: 'i'
+        }
+      });
     });
   }
 
