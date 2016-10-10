@@ -35,5 +35,19 @@ if (!schema.options.toJSON) {
 schema.options.toJSON.transform = function (doc, ret) {
   ret.createTime = ret.createTime && ret.createTime.valueOf();
   ret.updatedTime = ret.updatedTime && ret.updatedTime.valueOf();
+  if (ret.sensorData) {
+    if (ret.sensorData.light) {
+      ret.sensorData.light = parseFloat(ret.sensorData.light.toFixed(2));
+    }
+
+    if (ret.sensorData.temperature) {
+      ret.sensorData.temperature = parseFloat(ret.sensorData.temperature.toFixed(2));
+    }
+
+    if (ret.sensorData.humidity) {
+      ret.sensorData.humidity = parseFloat(ret.sensorData.humidity.toFixed(2));
+    }
+  }
+
   delete ret._id;
 };
