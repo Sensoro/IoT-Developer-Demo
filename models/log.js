@@ -12,7 +12,7 @@ var schema = module.exports = new mongoose.Schema({
     humidity: Number,
     customer: String
   },
-  updatedTime: { type: Date, default: Date.now }
+  updatedTime: { type: Date, default: Date.now, expires: '48h' }
 });
 
 schema.index({sn: -1, events: -1, updatedTime: -1 });
