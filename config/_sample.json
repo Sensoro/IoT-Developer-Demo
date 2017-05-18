@@ -4,11 +4,17 @@
     "database": "test",
     "username": "name",
     "password": "password",
-     "replsets": [{
+    "replsets": [{
       "host": "localhost:27018"
     }, {
       "host": "localhost:27018"
     }]
+  },
+
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "databaseIndex": 1
   },
 
   "sensoro": {

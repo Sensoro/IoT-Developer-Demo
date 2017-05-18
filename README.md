@@ -7,8 +7,8 @@
 # Links
 
 * [IoT official websites](https://iot.sensoro.com/manage/developer)	
-* [IoT developer Docs](http://http://docs.sensoro.com/cloud/index.html)
-* [API 权限校验](http://docs.sensoro.com/cloud/auth.html)
+* [IoT developer Docs](https://docs.sensoro.com/cloud/index.html)
+* [API 权限校验](https://docs.sensoro.com/cloud/auth.html)
 
 ## Quick Start
 
@@ -16,11 +16,12 @@
  	
  	$ git clone git@github.com:Sensoro/IoT-Devloper-Demo.git
  	$ npm install
- 	$ cp config/_sample.json config/developer.json && vim config/developer.json 
+ 	$ cp config/_sample.json config/development.json && vim config/development.json 
  	
 ### Usage
 
-1. 下载后，将开发者信息 AppId, AppSecret, AppKey 填写至 config 配置文件。
+1. 下载后，将开发者信息 AppId, AppSecret, AppKey 填写至 config/development.json 配置文件。
+2. 编辑 config/development.json 填写 MongoDB, Redis 配置参数。如果 MongoDB 服务不是副本集,可将 replsets 项删除。
 2. npm start 后，服务能够外网访问，将服务中接收 Webhook 回调请求的 URL 填写到 IoT 云平台 - [开发者](https://iot.sensoro.com/manage/developer) - API 地址栏, 此 Demo 的路由地址为 `http://YOUR_DOMAIN/sensoro/webhooks`
 3. 当有数据推送时查看是否正确接收数据。
 
